@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Navlinks from "./Navlinks";
 import logo from '../../assets/logo.png'
 import UserNav from "./UserNav";
@@ -32,7 +32,9 @@ const Navbar = () => {
               </label>
             </div>
             <div className="flex-1 px-2 mx-2">
-              <img src={logo} alt="logo" className="w-[100px] h-[55px]" />
+              <Link to={'/'}>
+                <img src={logo} alt="logo" className="w-[100px] h-[55px]" />
+              </Link>
             </div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">

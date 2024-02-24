@@ -8,14 +8,15 @@ import useAuth from "../../Hooks/useAuth";
 import Loader from "../../Shared/Loader";
 import Selector from "../../Shared/Selector";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import BookingModal from "../../Components/Modal/BookingModal";
 const Cart = () => {
+  const {user} = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
   const [refetch, cart] = useCart();
   const {loading} = useAuth();
   let countryData = Country.getAllCountries();
   const [stateData, setStateData] = useState();
   const [cityData, setCityData] = useState();
-
   const [country, setCountry] = useState(countryData[0]);
   const [state, setState] = useState();
   const [city, setCity] = useState();
@@ -35,6 +36,22 @@ const Cart = () => {
   useEffect(()=>{
     cityData && setCity(cityData[0]);
   },[cityData])
+
+ const closeModal = () => {
+   setIsOpen(false);
+ };
+
+ const totalPrice = cart.reduce((acc, price) => acc + price.productPrice, 0);
+
+  const [bookingInfo, setBookingInfo] = useState({
+    user: {
+      name: user?.displayName,
+      email: user?.email,
+    },
+    product: {
+      price: totalPrice
+    }
+  });
 
   const handleDelete = (id)=>{
     Swal.fire({
@@ -63,7 +80,7 @@ const Cart = () => {
         <Helmet>
           <title>Shoppe - Cart</title>
         </Helmet>
-        <div className="bg-[#FCF6F6] py-28 mt-20">
+        <div className="bg-[#FCF6F6] py-28 mt-[75px]">
           <h1 className="text-5xl text-center font-medium">Shop</h1>
         </div>
         {loading ? (
@@ -205,22 +222,27 @@ const Cart = () => {
                   </div>
                   <div className="flex justify-between items-center text-rose-500 text-xl">
                     <p>Grand Total</p>
-                    <p className="text-xl font-semibold">$260.00</p>
+                    <p className="text-xl font-semibold">${totalPrice}</p>
                   </div>
                   <br />
-                  <Link to={"/checkOut"}>
-                    <button className="btn btn-wide bg-rose-500 hover:bg-black text-white uppercase">
-                      proceed to checkout
-                    </button>
-                  </Link>
+                  <button
+                    onClick={() => setIsOpen(true)}
+                    className="btn btn-wide bg-rose-500 hover:bg-black text-white uppercase"
+                  >
+                    proceed to checkout
+                  </button>
                 </div>
               </div>
             </div>
+            <BookingModal
+              closeModal={closeModal}
+              isOpen={isOpen}
+              bookingInfo={bookingInfo}
+            ></BookingModal>
           </div>
         )}
       </>
     );
-  
 };
 
 export default Cart;

@@ -21,6 +21,8 @@ const Products = () => {
     queryFn: async() => await getAllProduct(category),
   });
 
+  console.log(products)
+
   if (isLoading) {
     return <Loader></Loader>;
   }

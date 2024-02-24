@@ -23,8 +23,8 @@ const DropdownMenu = () => {
               referrerPolicy="no-referrer"
               src={user.photoURL}
               alt="profile"
-              height="30"
-              width="30"
+              height="40"
+              width="40"
             />
           )}
         </div>
