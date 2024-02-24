@@ -1,8 +1,14 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project features and functionality.
 
-Currently, two official plugins are available:
+- This website is an E-commerce website. All types of Fashion products are available here.
+- This website uses Axios, Tailwind CSS, Firebase Authentication system and AOS.
+- After registration and login, the user can see product details page.
+- User can see all product.
+- User can buy any product with specific amount with stripe payment method.
+- This website's are fully responsive for mobile and tablet device.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+---
+
+## 🔗 website live link: https://k-rite-shoppe.web.app
